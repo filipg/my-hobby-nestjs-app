@@ -4,12 +4,14 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './Auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { ProfileModule } from './Profile/profile.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot('mongodb://localhost/my-hobby-nestjs-app', {useNewUrlParser: true}),
-    AuthModule
+    AuthModule,
+    ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService],
