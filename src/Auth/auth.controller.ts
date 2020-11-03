@@ -3,13 +3,14 @@ import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { User } from './user.model';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) { }
 
   @Post('/signup')
-  async signup(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  async signup(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<User> {
     return await this.authService.signup(authCredentialsDto);
   }
 

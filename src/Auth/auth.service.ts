@@ -14,7 +14,7 @@ export class AuthService {
     private jwtService: JwtService
   ) { }
 
-  async signup(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  async signup(authCredentialsDto: AuthCredentialsDto): Promise<User> {
     const { username, password } = authCredentialsDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -22,7 +22,7 @@ export class AuthService {
     const user = new this.userModel({ username, password: hashedPassword })
 
     try {
-      await user.save();
+      return await user.save();
     } catch (error) {
       if (error.code === 11000) {
         throw new ConflictException('User already exists');
