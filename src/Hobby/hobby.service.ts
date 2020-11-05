@@ -42,7 +42,7 @@ export class HobbyService {
     let hobby;
 
     try {
-      hobby = await this.hobbyModel.findById({id}).exec();
+      hobby = await this.hobbyModel.findById(id).exec();
     } catch (e) {
       throw new NotFoundException();
     }
