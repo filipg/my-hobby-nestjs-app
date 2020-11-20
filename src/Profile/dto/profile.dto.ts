@@ -12,4 +12,6 @@ export class ProfileDto {
 
   @IsString()
   email: string;
+
+  hobbies: string[];
 }

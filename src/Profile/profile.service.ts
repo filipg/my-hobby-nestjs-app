@@ -10,9 +10,9 @@ export class ProfileService {
   constructor(@InjectModel('Profile') private profileModel: Model<Profile>) { }
 
   async addProfileInfo(profileDto: ProfileDto): Promise<void> {
-    const {_id, description, phone, email} = profileDto;
+    const {_id, description, phone, email, hobbies} = profileDto;
 
-    const profileInfo = new this.profileModel({_id, description, phone, email});
+    const profileInfo = new this.profileModel({_id, description, phone, email, hobbies});
 
     try {
       await profileInfo.save();
@@ -37,13 +37,14 @@ export class ProfileService {
   }
 
   async updateProfileInfo(profileId: string, profileDto: ProfileDto): Promise<Profile> {
-    const {_id, description, phone, email} = profileDto;
+    const {_id, description, phone, email, hobbies} = profileDto;
 
     let profile = await this.getProfileInfo(profileId);
 
     profile.description = description;
     profile.phone = phone;
     profile.email = email;
+    profile.hobbies = hobbies;
 
     await profile.save();
 

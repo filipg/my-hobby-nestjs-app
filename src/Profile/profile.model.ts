@@ -12,4 +12,5 @@ export interface Profile extends Document {
   description: string;
   phone: string;
   email: string;
+  hobbies: string[];
 }

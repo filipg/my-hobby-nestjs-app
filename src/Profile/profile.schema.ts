@@ -8,4 +8,5 @@ export const ProfileSchema = new mongoose.Schema({
   description: String,
   phone: String,
   email: String,
+  hobbies: Object,
 });
