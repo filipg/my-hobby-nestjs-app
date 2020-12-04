@@ -70,4 +70,14 @@ export class HobbyService {
     return hobby;
   }
 
+  async addEvent(hobbyId: string, event: any): Promise<Hobby> {
+    let hobby = await this.getHobby(hobbyId);
+
+    hobby.events = [...hobby.events, event];
+
+    await hobby.save();
+
+    return hobby;
+  }
+
 }

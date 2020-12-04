@@ -27,4 +27,9 @@ export class HobbyController {
   async updateHobby(@Param('id') id: string, @Body() hobbyDto: HobbyDto): Promise<Hobby> {
     return await this.hobbyService.updateHobby(id, hobbyDto);
   }
+
+  @Patch('/event/:id')
+  async addEvent(@Param('id') id: string, @Body() event: any): Promise<Hobby> {
+    return await this.hobbyService.addEvent(id, event);
+  }
 }
