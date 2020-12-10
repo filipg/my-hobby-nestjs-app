@@ -6,6 +6,7 @@ import { AuthModule } from './Auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProfileModule } from './Profile/profile.module';
 import { HobbyModule } from './Hobby/hobby.module';
+import { EventModule } from './Event/event.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { HobbyModule } from './Hobby/hobby.module';
     MongooseModule.forRoot('mongodb://localhost/my-hobby-nestjs-app', {useNewUrlParser: true}),
     AuthModule,
     ProfileModule,
-    HobbyModule
+    HobbyModule,
+    EventModule
   ],
   controllers: [AppController],
   providers: [AppService],

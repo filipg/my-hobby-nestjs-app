@@ -9,6 +9,7 @@ import { HobbySchema } from './hobby.schema';
     MongooseModule.forFeature([{name: 'Hobby', schema: HobbySchema}])
   ],
   controllers: [HobbyController],
-  providers: [HobbyService]
+  providers: [HobbyService],
+  exports: [HobbyService] // Export service and import in event module
 })
 export class HobbyModule { }

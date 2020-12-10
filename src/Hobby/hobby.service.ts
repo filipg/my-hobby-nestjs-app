@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
 import { Hobby } from './hobby.model';
 import { HobbyDto } from './dto/hobby.dto';
+import { Event } from '../Event/event.model';
 
 @Injectable()
 export class HobbyService {
@@ -70,7 +71,7 @@ export class HobbyService {
     return hobby;
   }
 
-  async addEvent(hobbyId: string, event: any): Promise<Hobby> {
+  async addEvent(hobbyId: string, event: Event): Promise<Hobby> {
     let hobby = await this.getHobby(hobbyId);
 
     hobby.events = [...hobby.events, event];
