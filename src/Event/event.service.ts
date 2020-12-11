@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
 import { Event } from './event.model';
@@ -18,12 +18,27 @@ export class EventService {
 
     const newEvent = new this.eventModel({name, description, userCreator, time, date, location, hobbyId, participants});
 
-    await this.hobbyService.addEvent(hobbyId, newEvent);
+    await this.hobbyService.addEvent(hobbyId, newEvent._id);
 
     try {
       return await newEvent.save();
     } catch (e) {
       throw e;
     }
+  }
+
+  async getEvent(eventId: string): Promise<Event> {
+    let event;
+    try {
+      event = await this.eventModel.findById(eventId).exec();
+    } catch (e) {
+      throw new NotFoundException();
+    }
+
+    if (!event) {
+      throw new NotFoundException();
+    }
+
+    return event;
   }
 }
